@@ -1,0 +1,53 @@
+:root {
+  --bg: #f8f9fa;
+  --fg: #212529;
+  --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg: #212529;
+  --fg: #f8f9fa;
+  --card-bg: #2c2f33;
+}
+
+body,
+.card{border-radius:1rem;box-shadow:0 2px 6px rgba(0,0,0,.08);}
+.badge-pendiente{background:#ffc107;}
+.badge-en-progreso{background:#0dcaf0;}
+.badge-completada{background:#198754;}
+
+#tasks-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#tasks-table th,
+#tasks-table td {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+#tasks-table th:nth-child(1),#tasks-table td:nth-child(1){ 
+  width: 42%; 
+}
+#tasks-table th:nth-child(2),#tasks-table td:nth-child(2){
+  width: 13%;
+}
+#tasks-table th:nth-child(3),#tasks-table td:nth-child(3){
+  width: 18%;
+}
+#tasks-table th:nth-child(4),#tasks-table td:nth-child(4){
+  width: 18%;
+}
+#tasks-table th:nth-child(5),#tasks-table td:nth-child(5){
+  width: 9%;
+}
+
+body.theme-dark { background-color:#212529!important; color:#f8f9fa!important; }
+
+.pre-log {
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  max-height: 70vh;
+  overflow: auto;
+}
