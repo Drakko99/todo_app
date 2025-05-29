@@ -54,9 +54,7 @@
         curl_exec($ch);
         curl_close($ch);
     }
-
-
-
+    
     // Obtiene una tarea
     function fetch_task($id, $user_id) {
         $pdo = get_db();
