@@ -10,6 +10,9 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title = $_POST['title'] ?? '';
+        if (mb_strlen($title) > 255) {
+            $title = mb_substr($title, 0, 255);
+        }
         $description = $_POST['description'] ?? '';
         $dueDate = $_POST['due_date'] ?? '';
         $status = $_POST['status'] ?? 'pendiente';
@@ -43,7 +46,7 @@
                 $pdo->commit();
                 
                 $task = fetch_task($taskId, $uid);
-                log_action('create', "Tarea #$taskId");
+                log_action('create', "Tarea #$taskId: \"$title\"");
                 send_webhook('create', $task);
                 
                 header('Location: index.php');
@@ -93,7 +96,7 @@
         <form method="post" class="card p-4">
             <div class="mb-3">
                 <label>Título</label>
-                <input name="title" class="form-control" required>
+                <input name="title" class="form-control" required maxlength="255">
             </div>
             <div class="mb-3">
                 <label>Descripción</label>

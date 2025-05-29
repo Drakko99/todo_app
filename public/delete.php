@@ -19,7 +19,7 @@
         $stmt = $pdo->prepare('DELETE FROM tarea_data WHERE id=? AND user_id=?');
         $stmt->execute([$id, $uid]);
         
-        log_action('delete', "Tarea #$id");
+        log_action('delete', "Tarea #$id: \"{$task['title']}\"");
         send_webhook('delete', ['id' => $id]);
         
         header('Location: index.php');

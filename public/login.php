@@ -30,11 +30,34 @@
         <link id="themeCss" rel="stylesheet" href="<?= $cfg['theme_css_light'] ?>">
         <link rel="stylesheet" href="custom.css">
         <script>
-            (function() {
-                const theme = localStorage.getItem('theme');
-                if (theme === 'dark') {
-                    document.getElementById('themeCss').href = '<?= $cfg['theme_css_dark'] ?>';
+            (() => {
+                const KEY  = 'theme';
+                const root = document.documentElement;
+                const css  = () => document.getElementById('themeCss');
+
+                function applyTheme () {
+                    const t = localStorage.getItem(KEY) || 'light';
+                    root.dataset.theme = t;
+                    root.classList.toggle('dark', t === 'dark');
+
+                    if (css()) {
+                    css().href = t === 'dark'
+                        ? '<?= $cfg['theme_css_dark'] ?>'
+                        : '<?= $cfg['theme_css_light'] ?>';
+                    }
                 }
+                applyTheme();
+                window.addEventListener('pageshow', applyTheme, false);
+                window.addEventListener('DOMContentLoaded', () => {
+                    const btn = document.getElementById('themeSwitch');
+                    if (!btn) return;
+
+                    btn.addEventListener('click', () => {
+                    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem(KEY, next);
+                    applyTheme();
+                    });
+                });
             })();
         </script>
     </head>

@@ -89,7 +89,7 @@
                     ORDER BY td.id DESC';
             $stmt = $pdo->query($sql);
             respond($stmt->fetchAll(PDO::FETCH_ASSOC));
-        } else {                           // DETALLE (id)
+        } else {
             $sql = 'SELECT td.*, te.title, te.description, u.username
                     FROM tarea_data td
                     JOIN tarea_dataexten te ON td.id = te.id
@@ -117,6 +117,13 @@
             respond(['error'=>'title y due_date son obligatorios'], 400);
         }
 
+        if (isset($in['title'])) {
+            $in['title'] = trim($in['title']);
+            if (mb_strlen($in['title']) > 255) {
+                respond(['error' => 'El título no puede superar los 255 caracteres'], 400);
+            }
+        }
+
         $pdo->beginTransaction();
         $pdo->prepare('INSERT INTO tarea_data(user_id,due_date,status)
                     VALUES(?,?,?)')
@@ -127,7 +134,7 @@
             ->execute([$newId, $in['title'], $in['description'] ?? '']);
         $pdo->commit();
 
-        log_action('api_create', "Tarea #$newId");
+        log_action('api_create', "Tarea #$newId: \"{$in['title']}\"");
         send_webhook('create', fetch_task_any_user($newId));
 
         respond(fetch_task_any_user($newId), 201);
@@ -143,6 +150,13 @@
 
         if (!user_exists($pdo, $newOwner)) {
             respond(['error'=>"Usuario $newOwner no existe"], 404);
+        }
+
+        if (isset($in['title'])) {
+            $in['title'] = trim($in['title']);
+            if (mb_strlen($in['title']) > 255) {
+                respond(['error' => 'El título no puede superar los 255 caracteres'], 400);
+            }
         }
 
         $pdo->beginTransaction();
@@ -164,7 +178,7 @@
             ]);
         $pdo->commit();
 
-        log_action('api_update', "Tarea #$id");
+        log_action('api_update', "Tarea #$id: \"".($in['title'] ?? $task['title'])."\"");
         send_webhook('update', fetch_task_any_user($id));
 
         respond(fetch_task_any_user($id));
@@ -172,11 +186,12 @@
 
     //DELETE /api/tareas/{id}
     if ($method === 'DELETE' && $id !== null) {
+        $task = fetch_task_any_user($id);
         $ok = $pdo->prepare('DELETE FROM tarea_data WHERE id=?')
                 ->execute([$id]);
 
         if ($ok) {
-            log_action('api_delete', "Tarea #$id");
+            log_action('api_delete', "Tarea #$id: \"{$task['title']}\"");
             send_webhook('delete', ['id'=>$id]);
             respond(['deleted' => $id]);
         } else {
