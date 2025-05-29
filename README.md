@@ -98,6 +98,7 @@ Si tu usuario/contraseña de MySQL no es *root*/vacío, edita `todo_app/config.p
 7. **Cambiar tema claro / oscuro**  
    - Abre **Ajustes**, activa el interruptor con el icono ☀️/🌙 y pulsa «Volver».  
    - La preferencia se guarda en el navegador (*localStorage*).
+   - En algunos navegadores es necesario recargar la página para que se aplique.
 
 8. **Configurar Webhook**  
    - Dentro de **Ajustes** pega tu URL en «Webhook URL» y pulsa **Guardar**.  
