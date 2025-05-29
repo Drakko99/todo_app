@@ -128,12 +128,12 @@ _Raíz del proyecto:_ `http://localhost/todo_app/`
 
 - **Crear tarea**
   ```bash
-  curl -X POST -H "Content-Type: application/json"        -d '{ "title":"Tarea de prueba", "due_date":"2025-06-30", "description":"Desde API", "user_id":1 }'        http://localhost/todo_app/public/api.php/tareas?token=DEV
+  curl -X POST -H "Content-Type: application/json" -d '{ "title":"Tarea de prueba", "due_date":"2025-06-30", "description":"Desde API", "user_id":1 }' http://localhost/todo_app/public/api.php/tareas?token=DEV
   ```
 
 - **Actualizar tarea**
   ```bash
-  curl -X PUT -H "Content-Type: application/json"        -d '{ "title":"Modificada", "status":"completada", "due_date":"2025-07-01", "description":"Actualizada", "user_id":1 }'        http://localhost/todo_app/public/api.php/tareas/3?token=DEV
+  curl -X PUT -H "Content-Type: application/json" -d '{ "title":"Modificada", "status":"completada", "due_date":"2025-07-01", "description":"Actualizada", "user_id":1 }' http://localhost/todo_app/public/api.php/tareas/3?token=DEV
   ```
 
 - **Eliminar tarea**
@@ -156,12 +156,12 @@ _Comando usado:_ `php -S localhost:8000` (ejecutado en `todo_app/public`)
 
 - **Crear tarea**
   ```bash
-  curl -X POST -H "Content-Type: application/json"        -d '{ "title":"Tarea de prueba", "due_date":"2025-06-30", "description":"Desde API", "user_id":1 }'        http://localhost:8000/api.php/tareas?token=DEV
+  curl -X POST -H "Content-Type: application/json" -d '{ "title":"Tarea de prueba", "due_date":"2025-06-30", "description":"Desde API", "user_id":1 }' http://localhost:8000/api.php/tareas?token=DEV
   ```
 
 - **Actualizar tarea**
   ```bash
-  curl -X PUT -H "Content-Type: application/json"        -d '{ "title":"Modificada", "status":"completada", "due_date":"2025-07-01", "description":"Actualizada", "user_id":1 }'        http://localhost:8000/api.php/tareas/3?token=DEV
+  curl -X PUT -H "Content-Type: application/json" -d '{ "title":"Modificada", "status":"completada", "due_date":"2025-07-01", "description":"Actualizada", "user_id":1 }' http://localhost:8000/api.php/tareas/3?token=DEV
   ```
 
 - **Eliminar tarea**
