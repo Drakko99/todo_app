@@ -45,7 +45,7 @@ mysql -u root -p < schema.sql
 
 ## 4. Configuración opcional
 
-Si tu usuario/contraseña de MySQL no es *root*/vacío, edita `todo_app/config.php` y ajusta los valores `db_user` y `db_pass`.
+Si tu usuario/contraseña de MySQL no es *root*/vacío, edita `todo_app/config.php` y ajusta los valores `user` y `password`.
 
 ---
 
