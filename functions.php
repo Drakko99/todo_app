@@ -5,9 +5,9 @@
     // Registra la acción en el log
     function log_action($action, $info = '') {
         $cfg = require __DIR__.'/config.php';
-        $logEntry = sprintf("[%s] %s | %s\n", 
-            date('Y-m-d H:i:s'), 
-            strtoupper($action), 
+        $logEntry = sprintf("[%s] %s | %s\n",
+            date('Y-m-d H:i:s'),
+            strtoupper($action),
             $info
         );
         file_put_contents($cfg['log_file'], $logEntry, FILE_APPEND);
@@ -25,7 +25,7 @@
     // Guarda el weebhoock
     function set_setting($key, $value) {
         $pdo = get_db();
-        $stmt = $pdo->prepare('INSERT INTO settings(weebhook, value) VALUES(?, ?) 
+        $stmt = $pdo->prepare('INSERT INTO settings(weebhook, value) VALUES(?, ?)
                             ON DUPLICATE KEY UPDATE value = VALUES(value)');
         $stmt->execute([$key, $value]);
     }
@@ -71,9 +71,9 @@
     // Obtiene la tarea para dev
     function fetch_task_any_user($id) {
         $pdo = get_db();
-        $stmt = $pdo->prepare('SELECT td.*, te.title, te.description 
-                            FROM tarea_data td 
-                            INNER JOIN tarea_dataexten te ON td.id = te.id 
+        $stmt = $pdo->prepare('SELECT td.*, te.title, te.description
+                            FROM tarea_data td
+                            INNER JOIN tarea_dataexten te ON td.id = te.id
                             WHERE td.id = ?');
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

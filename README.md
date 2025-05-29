@@ -15,7 +15,7 @@
 
 1. Descarga el ZIP del repositorio o ejecuta:
    ```bash
-   git clone https://github.com/tu‑usuario/todo_app.git
+   git clone https://github.com/Drakko99/todo_app.git
    ```
 2. Descomprime la carpeta **`todo_app`** en la zona pública de tu servidor.
    - **Windows + XAMPP** → `C:\xampp\htdocs\todo_app`
