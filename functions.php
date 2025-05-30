@@ -35,7 +35,9 @@
         $cfg = require __DIR__.'/config.php';
         $url = get_setting('webhook_url', $cfg['webhook_url']);
         
-        if (!$url) return;
+        if (!$url) {
+            return;
+        } 
         
         $payload = [
             'action' => $action,
@@ -54,13 +56,13 @@
         curl_exec($ch);
         curl_close($ch);
     }
-    
+
     // Obtiene una tarea
     function fetch_task($id, $user_id) {
         $pdo = get_db();
-        $stmt = $pdo->prepare('SELECT td.*, te.title, te.description 
-                            FROM tarea_data td 
-                            INNER JOIN tarea_dataexten te ON td.id = te.id 
+        $stmt = $pdo->prepare('SELECT td.*, te.title, te.description
+                            FROM tarea_data td
+                            INNER JOIN tarea_dataexten te ON td.id = te.id
                             WHERE td.id = ? AND td.user_id = ?');
         $stmt->execute([$id, $user_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

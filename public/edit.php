@@ -28,7 +28,7 @@
         
         // Validaciones
         if (empty($title)){
-           $errors[] = 'Título requerido'; 
+           $errors[] = 'Título requerido';
         }
         if (empty($dueDate)) {
             $errors[] = 'Fecha requerida';

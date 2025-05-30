@@ -12,7 +12,7 @@
  *
  * # LISTAR
  * curl http://localhost:8000/api.php/tareas?token=DEV
- * 
+ *
  * # DETALLE
  * curl http://localhost:8000/api.php/tareas/3?token=DEV
  *
