@@ -37,7 +37,7 @@
 
     <nav class="d-flex justify-content-between align-items-center mb-3">
       <a href="#" onclick="history.back();return false;" class="btn btn-secondary">← Volver</a>
-      <h2 class="m-0">Ajustes</h2>
+      <h2 class="m-2">Ajustes</h2>
       <div class="d-flex align-items-center ms-auto">
         ☀️
         <div class="form-check form-switch mx-2">
